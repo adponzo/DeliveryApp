@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ restaurant.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="restaurant.open">Aberto</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="!restaurant.open" color="danger">Fechado</ion-card-subtitle>
+      <ion-card-title>{{ restaurant.name }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item href="tel:{{ restaurant.phone }}">
+          <ion-label>{{restaurant.phone}}</ion-label>
+          <ion-icon slot="start" name="call-outline"></ion-icon>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{ getAddressText() }}</ion-label>
+          <ion-icon slot="start" name="business-outline"></ion-icon>
+        </ion-item>
+
+      </ion-list>
+
+      <ion-list>
+        <ion-list-header>
+          Horário de funcionamento
+        </ion-list-header>
+
+        <ion-item lines="full" *ngFor="let time of restaurant.businessHour">
+          <ion-label>
+            {{ getDayOfWeekName(time.dayOfWeek) }} {{ time.start | date:'HH:mm' }} às {{ time.end | date:'HH:mm' }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

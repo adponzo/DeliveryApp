@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Adicionar item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="onSubmit()">
+    <ion-list>
+      <app-cardapio-item [product]="model.product"></app-cardapio-item>
+      <ion-item>
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col>
+              <ion-button expand="block" color="secondary" (click)="onBtnMinusClick()">
+                <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col class="ion-text-center">
+              {{ model.quantity }}
+            </ion-col>
+            <ion-col>
+              <ion-button expand="block" color="secondary" (click)="onBtnPlusClick()">
+                <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Observação</ion-label>
+        <ion-textarea [(ngModel)]="model.note" name="note"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-margin-vertical">
+      <ion-button type="submit" expand="block" color="primary">Adicionar item</ion-button>
+    </div>
+  </form>
+
+</ion-content>
